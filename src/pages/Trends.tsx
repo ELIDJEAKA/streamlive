@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Movies = () => {
+const Trends = () => {
   return (
     <div>
-      
+      Trends
     </div>
   )
 }
 
-export default Movies
+export default Trends

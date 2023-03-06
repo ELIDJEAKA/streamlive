@@ -1,0 +1,10 @@
+.me-auto span:hover {
+    color:#EE9B00;
+}
+
+.me-auto span {
+    color:#FFF;
+    font-weight:bold;
+    text-decoration: none;
+    padding: 10px;
+}
