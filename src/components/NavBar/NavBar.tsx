@@ -5,22 +5,29 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './NavBar.css'
 import { NavLink } from 'react-router-dom';
-import { searchInput$ } from '../../store/SearchInput';
-import { MoviesCall, searchResult$ } from '../../store/SearchResult';
+import { searchInput$ } from '../../store/Search.store';
+import { MoviesCall, searchResult$ } from '../../store/Movie.store';
+import { TvCall } from '../../store/Serie.store';
 
 const NavBar = () => {
   const [searchValue,setSearchValue] = useState<string|null>(null)
-  const [moviesData, setMoviesData]= useState<any>([])
+  const [, setMoviesData]= useState<any>([])
+  const [, setSeriesData]= useState<any>([])
   useEffect(()=>{
       searchInput$.subscribe(data=>setSearchValue(data))
   },[])
+
   const shown = searchValue ? 'search' : 'discover'
+  useEffect(()=>{
+    TvCall(shown,searchValue)
+    searchResult$.subscribe((data:{}[])=>{setSeriesData([...data])})
+  },[searchValue,shown])
   //console.log(searchValue)
   
   useEffect(()=>{
     MoviesCall(shown,searchValue)
     searchResult$.subscribe((data:{}[])=>{setMoviesData([...data])})
-  },[searchValue])
+  },[searchValue,shown])
 
   return (
     
@@ -40,7 +47,7 @@ const NavBar = () => {
                     
                     <NavLink to="/movies"><span>Movies</span></NavLink>
                     <NavLink to="/series"><span>Series</span></NavLink>
-                    <NavLink to="/trends"><span>Trends</span></NavLink>
+                    {/* <NavLink to="/trends"><span>Trends</span></NavLink> */}
                     
                   </Nav>
                   <Form className="d-flex">
