@@ -44,10 +44,10 @@ const movieApi = {
   //   const url = "search/" + category[cate];
   //   return httpClient.get(url, params);
   // },
-  // detail: (cate: string, id: string, params: any) => {
-  //   const url = category[cate] + "/" + id;
-  //   return httpClient.get(url, params);
-  // },
+  detail: (type: string|null, id: number|null, search=null) => {
+    const url = type + "/" + id;
+    return httpClient.get(url, params(search));
+  },
   // credits: (cate: string, id: string) => {
   //   const url = category[cate] + "/" + id + "/credits";
   //   return httpClient.get(url, { params: {} });

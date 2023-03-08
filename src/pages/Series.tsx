@@ -11,7 +11,7 @@ import apiConfig from '../api/config';
 
 const Series = () => {
   const [seriesData, setSeriesData]= useState<any>([])
-  const noimage =  require("../assets/noimage.jpg")
+  
   const search = SearchUpdate()
   const shown = search ? 'search' : 'discover'
 
@@ -32,7 +32,7 @@ const Series = () => {
                   <Col sm key={serie.id}>
                       <Card style={{ width: '18rem' }}>
                         <AiFillPlayCircle color='green' fontSize={40} id="playIcon"/> 
-                        <Card.Img variant="top" src={serie.poster_path ? `${apiConfig.w500Image(serie.poster_path)}` : noimage } alt="" />
+                        <Card.Img variant="top" src={serie.poster_path ? `${apiConfig.w500Image(serie.poster_path)}` : '' } alt="" />
                         <Card.Body>
                           <Card.Title>{serie.name}</Card.Title>                         
                         </Card.Body>
