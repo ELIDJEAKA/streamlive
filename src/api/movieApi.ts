@@ -3,6 +3,7 @@ import config from './config'
 import { MovieInterface } from "../Interfaces/Movies.interface";
 import { CreditInterface } from "../Interfaces/Credits.interface";
 import { searchUrlInterface } from "../Interfaces/Imdb.interface";
+import { SerieInterface } from "../Interfaces/Series.interface";
 
 export const params = (search:string|null, genre?:string,language?:string,page?:string) => {
     return {
@@ -38,7 +39,7 @@ const movieApi = {
     const url = "/" + type + "/movie";
     return httpClient.get(url, params(search));
   },
-  getTvList: (type: string, search: string | null) => {
+  getTvList: (type: string, search: string | null) :Promise<{results:SerieInterface[]}>=> {
     const url = "/" + type + "/tv";
     return httpClient.get(url, params(search));
   },
@@ -46,7 +47,7 @@ const movieApi = {
     const url = "/discover/movie";
     return httpClient.get(url, params(search,genre,language,page));
   },
-  searchTv: (search=null,genre:string,language:string,page:string):Promise<{results:MovieInterface[]}> => {
+  searchTv: (search=null,genre:string,language:string,page:string):Promise<{results:SerieInterface[]}> => {
     const url = "/discover/tv";
     return httpClient.get(url, params(search,genre,language,page));
   },

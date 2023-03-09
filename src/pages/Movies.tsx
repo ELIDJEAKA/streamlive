@@ -35,7 +35,7 @@ const Movies =  () => {
   const language = searchParams.get('language') || '';
   
   useEffect(()=>{
-    if(searchParams.get('language') || searchParams.get('language') || searchParams.get('language')){
+    if(genre || page || language){
       searchMoviebyUrl(search,genre,language,page)
       setSearchByUrl(true)
       searchResultUrl$.subscribe((data:{}[])=>{if (data){setMoviesUrlData([...data])}})
@@ -45,7 +45,7 @@ const Movies =  () => {
       searchResult$.subscribe((data:{}[])=>{if (data){setMoviesData([...data])}})
     }
   },[search,shown])
-  console.log(moviesData);
+  
   
   return (
     <div>
@@ -57,7 +57,7 @@ const Movies =  () => {
                   <>
                   <Col sm key={movie.id} onClick={()=>handleDetail(movie.id)}>
                       <Card style={{ width: '18rem' }}>
-                        <AiFillPlayCircle color='green' fontSize={40} id="playIcon"/> 
+                         
                         <Card.Img variant="top" src={movie.poster_path ? `${apiConfig.w500Image(movie.poster_path)}` : '' } alt="" />
                         <Card.Body>
                           <Card.Title>{movie.title}</Card.Title>                         
@@ -73,12 +73,11 @@ const Movies =  () => {
               {moviesData.map((movie:any)=>{
                 return(
                   <>
-                  <Col sm key={movie.id} onClick={()=>handleDetail(movie.id)}>
+                  <Col sm key={movie.id} onClick={()=>handleDetail(movie.id)} style={{ margin: '2px' }}>
                       <Card style={{ width: '18rem' }}>
-                        <AiFillPlayCircle color='green' fontSize={40} id="playIcon"/> 
                         <Card.Img variant="top" src={movie.poster_path ? `${apiConfig.w500Image(movie.poster_path)}` : '' } alt="" />
                         <Card.Body>
-                          <Card.Title>{movie.title}</Card.Title>                         
+                          <Card.Title className='title-grid'>{movie.title}</Card.Title>                         
                         </Card.Body>
                       </Card>
                   </Col>

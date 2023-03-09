@@ -44,3 +44,7 @@ Card.Title{
     margin-bottom: 10px;
     }
     
+.title-grid{
+    font-size: 13px !important;
+    font-weight: bold !important; 
+}
