@@ -1,5 +1,7 @@
 import httpClient from "./httpClient";
 import config from './config'
+import { MovieInterface } from "../Interfaces/Movies.interface";
+import { CreditInterface } from "../Interfaces/Credits.interface";
 
 export const params = (search:string|null) => {
     return {
@@ -28,7 +30,7 @@ export const tvType: {} = {
 };
 
 const movieApi = {
-  getMoviesList: (type: string, search: string | null) => {
+  getMoviesList: (type: string, search: string | null):Promise<{results:MovieInterface[]}> => {
     const url = "/" + type + "/movie";
     return httpClient.get(url, params(search));
   },
@@ -44,18 +46,19 @@ const movieApi = {
   //   const url = "search/" + category[cate];
   //   return httpClient.get(url, params);
   // },
-  detail: (type: string|null, id: number|null, search=null) => {
+  detail: (type: string|null, id: number|null, search=null):Promise<MovieInterface> => {
     const url = type + "/" + id;
     return httpClient.get(url, params(search));
   },
-  // credits: (cate: string, id: string) => {
-  //   const url = category[cate] + "/" + id + "/credits";
-  //   return httpClient.get(url, { params: {} });
-  // },
-  // similar: (cate: string, id: string) => {
-  //   const url = category[cate] + "/" + id + "/similar";
-  //   return httpClient.get(url, { params: {} });
-  // },
+  credits: (type: string|null, id: number|null,search=null):Promise<{cast:CreditInterface[]}> => {
+    const url = type + "/" + id + "/credits";
+    return httpClient.get(url, { params: {} });
+  },
+  similar: (type: string|null, id: number|null,search=null):Promise<MovieInterface> => {
+    /* Concatenating the strings. */
+    const url = type + "/" + id + "/similar";
+    return httpClient.get(url, { params: {} });
+  },
 };
 
 export default movieApi;

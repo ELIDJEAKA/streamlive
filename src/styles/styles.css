@@ -1,3 +1,46 @@
 Card.Title{
     font-size: 10px;
 }
+
+.img_cast{
+    height: 15% !important;
+    width: 15% !important;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.img_detail{
+    height: 70% !important;
+    width: 100%;
+}
+
+.container-body{
+    margin-top: 20px;
+}
+
+.detail-movie{
+    text-align: justify;
+    font-size: 20px;
+}
+
+.title-detail{
+    font-weight: bold !important;
+    font-size: 30px !important;
+}
+
+.genre_item{
+    box-sizing: border-box;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 20px;
+    display: inline-flex;
+    min-width: 48px;
+    outline: none;
+    padding: 0 14px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    }
+    
