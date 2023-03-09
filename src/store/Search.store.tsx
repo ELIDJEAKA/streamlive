@@ -18,3 +18,7 @@ export const SearchUpdate = ()=>{
     })
     return searchInput
 }
+
+export const SearchbyUrl = ()=>{
+    
+}

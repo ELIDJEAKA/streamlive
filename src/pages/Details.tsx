@@ -16,7 +16,7 @@ const Details = () => {
     const [movieDetail, setMovieDetail]= useState<MovieInterface>()
     const [serieDetail, setSerieDetail]= useState<SerieInterface>()
     const [credit, setCredit]= useState<CreditInterface[]>()
-    const [searchParams, setSearchParams] = useSearchParams() 
+    const [searchParams, ] = useSearchParams() 
     
     const type = searchParams.get('type') || ''
     const id = searchParams.get('id') || ''

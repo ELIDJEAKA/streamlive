@@ -2,14 +2,18 @@ import httpClient from "./httpClient";
 import config from './config'
 import { MovieInterface } from "../Interfaces/Movies.interface";
 import { CreditInterface } from "../Interfaces/Credits.interface";
+import { searchUrlInterface } from "../Interfaces/Imdb.interface";
 
-export const params = (search:string|null) => {
+export const params = (search:string|null, genre?:string,language?:string,page?:string) => {
     return {
-      params:{
-        api_key:config.apiKey,
-        query: search
-      }
-    }
+      params: {
+        api_key: config.apiKey,
+        query: search||null,
+        genre: genre,
+        language: language,
+        page: page,
+      },
+    };
 }
 
 export const category: {} = {
@@ -38,14 +42,14 @@ const movieApi = {
     const url = "/" + type + "/tv";
     return httpClient.get(url, params(search));
   },
-  // getVideos: (cate: string, id: string) => {
-  //   const url = category[cate] + "/" + id + "/videos";
-  //   return httpClient.get(url, { params: {} });
-  // },
-  // search: (cate: string, params: any) => {
-  //   const url = "search/" + category[cate];
-  //   return httpClient.get(url, params);
-  // },
+  searchMovies: (search=null,genre:string,language:string,page:string):Promise<{results:MovieInterface[]}> => {
+    const url = "/discover/movie";
+    return httpClient.get(url, params(search,genre,language,page));
+  },
+  searchTv: (search=null,genre:string,language:string,page:string):Promise<{results:MovieInterface[]}> => {
+    const url = "/discover/tv";
+    return httpClient.get(url, params(search,genre,language,page));
+  },
   detail: (type: string|null, id: number|null, search=null):Promise<MovieInterface> => {
     const url = type + "/" + id;
     return httpClient.get(url, params(search));
