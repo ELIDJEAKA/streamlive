@@ -34,9 +34,9 @@ const NavBar = () => {
         <Fragment>
             <Navbar bg="dark" expand="lg">
               <Container fluid>
-                <NavLink to="/">
+                {/* <NavLink to="/">
                     <Navbar.Brand href="#">StreamLive</Navbar.Brand>
-                </NavLink>
+                </NavLink> */}
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                   <Nav

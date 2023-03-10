@@ -8,7 +8,6 @@ import {
 import Movies from '../pages/Movies';
 import NavBar from '../components/NavBar/NavBar';
 import Series from '../pages/Series';
-import Home from '../pages/Home';
 import Details from '../pages/Details';
 
 
@@ -18,11 +17,11 @@ const index = () => {
     <Router>
         <NavBar />
         <Routes>
-            <Route path="/" element={<Home />} />
+            
             <Route path="/movies" element={<Movies />} />
             <Route path="/series" element={<Series />}  />
              <Route path="/details" element={<Details />}  /> 
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<Navigate to="/movies" replace />} />
         </Routes>
     </Router>
   )

@@ -1,6 +1,5 @@
 
 import React, { Fragment, useEffect, useState } from 'react'
-import {AiFillPlayCircle} from 'react-icons/ai'
 import { searchResult$, MoviesCall, searchMoviebyUrl, searchResultUrl$ } from '../store/Movie.store';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -55,12 +54,12 @@ const Movies =  () => {
               {moviesUrlData.map((movie:any)=>{
                 return(
                   <>
-                  <Col sm key={movie.id} onClick={()=>handleDetail(movie.id)}>
+                  <Col sm key={movie.id} onClick={()=>handleDetail(movie.id)} style={{ margin: '2px' }}>
                       <Card style={{ width: '18rem' }}>
                          
                         <Card.Img variant="top" src={movie.poster_path ? `${apiConfig.w500Image(movie.poster_path)}` : '' } alt="" />
                         <Card.Body>
-                          <Card.Title>{movie.title}</Card.Title>                         
+                          <Card.Title className='title-grid'>{movie.title}</Card.Title>                         
                         </Card.Body>
                       </Card>
                   </Col>
